@@ -1,0 +1,30 @@
+{
+  "name": "habit-tracker",
+  "version": "1.0.0",
+  "description": "Full Stack Web App for Habit tracking using DB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhi3s6y9/Habit-Tracker.git"
+  },
+  "keywords": [
+    "Habit",
+    "Tracker",
+    "Nodejs",
+    "MongoDB",
+    "Full",
+    "stack",
+    "Backend",
+    "EJS",
+    "Database"
+  ],
+  "author": "Abhishek Yadav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abhi3s6y9/Habit-Tracker/issues"
+  },
+  "homepage": "https://github.com/abhi3s6y9/Habit-Tracker#readme"
+}
