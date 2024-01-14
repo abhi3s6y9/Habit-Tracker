@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const habitController = require("../controllers/habit_controller");
+const habitController = require("../controllers/homeController");
 
 // For rendering different pages and controllers
 router.get("/", habitController.load);
