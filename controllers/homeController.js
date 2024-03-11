@@ -1,61 +1,78 @@
 const Habit = require('../models/habit');
 
-module.exports.load = function (request, response) {
-    Habit.find({}, function (err, habits) {
-        if (err) {
-            console.log("Error in fetching habits from DB");
-            return;
-        }
-        else {
-            return response.render('home', { habit_list: habits });
-        }
-    })
+module.exports.load = async function (req, res) {
+
+    try {
+        let habits = await Habit.find();
+        
+        return res.render('home', { "habit_list" : habits });
+    } catch (error) {
+        console.log('Error fetching habits from DB', error);
+        return res.redirect('back');
+    }
+    // Habit.find({}, function (err, habits) {
+    //     if (err) {
+    //         console.log("Error in fetching habits from DB");
+    //         return;
+    //     }
+    //     else {
+    //         return response.render('home', { habit_list: habits });
+    //     }
+    // })
 }
 
 // This function helps in adding a habit in list.
-module.exports.add = function (request, response) {
+module.exports.add = async function (request, response) {
     request.body.record_tracker = {};
     request.body.user = "AnyUser";
-    console.log(request.body);
-    Habit.create(request.body, function (err, newhabit) {
-        if (err) {
-            console.log("error in creating a habit");
-            return;
-        }
-        else {
-            // console.log("******New habit******")
-            // console.log(newhabit);
-            return response.redirect("back");
-        }
-    })
+    
+
+    try {
+        
+        let newHabit = Habit.create(request.body);
+        return response.redirect("back");
+    } catch (error) {
+        console.log('Error creating habits from DB', error);
+        return res.redirect('back');
+    }
+
 }
 
 // This function helps in deleting a habit from list.
-module.exports.delete = function (request, response) {
+module.exports.delete = async function (request, response) {
     let id = request.query.id;
-    Habit.findByIdAndDelete(id, function (err) {
-        if (err) {
-            console.log("error in deletion");
-            return;
-        }
-        else {
-            return response.redirect('back');
-        }
-    })
+
+    try {
+        let habit = await Habit.findByIdAndDelete(id);
+        return response.redirect('back');
+    } catch (error) {
+        console.log('Error deleting habit from DB', error);
+        return res.redirect('back');
+    }
+    
+    // Habit.findByIdAndDelete(id, function (err) {
+    //     if (err) {
+    //         console.log("error in deletion");
+    //         return;
+    //     }
+    //     else {
+    //         return response.redirect('back');
+    //     }
+    // })
 }
 
 // Finds a habit by id given in query params and renders it
-module.exports.viewhabit = function (request, response) {
+module.exports.viewhabit = async function (request, response) {
     let id = request.query.id;
-    Habit.findById(id, function (err, habit) {
-        if (err) {
-            console.log("error in finding habit");
-            return;
-        }
-        else {
-            response.render("habit.ejs", { "habit": habit });
-        }
-    })
+
+    try {
+        let habit = await Habit.findById(id);
+        response.render("habit.ejs", { "habit": habit });
+    } catch (error) {
+        console.log('Error viewing habit from DB', error);
+        return res.redirect('back');
+    }
+
 }
 
 // Finds a habit by id given in query params and returns it's json object
@@ -101,12 +118,10 @@ module.exports.updateDates = function (request, response) {
                     return response.end('{ "status":"failed"}');
                 }
                 else {
-                    // console.log("Updated!");
                     return response.end('{ "status":"success"}');
                 }
             });
         }
     });
-
 
 }
