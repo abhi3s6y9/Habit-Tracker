@@ -1,0 +1,66 @@
+/* Styling on form or input area */
+#input {
+    text-align: center;
+    height: 10vh;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+#input input {
+    height: 80%;
+    width: 30vw;
+    padding: 10px;
+    background-color: transparent;
+    border: 2px solid blue;
+    border-radius: 7px;
+    color: purple;
+    font-size: 18px;
+}
+
+#input button{
+    height: 45px;
+    width: 45px;
+    border-radius: 7px;
+}
+
+#input button:hover {
+    cursor: pointer;
+}
+
+
+/* Styling on the Rendered list items or habits */
+.list-item {
+    list-style-type: none;
+    margin-left: 15vw;
+    margin-top: 20px;
+}
+
+.list-item li {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.list-item li span {
+    margin-right: 25px;
+}
+
+.list-item li .habit{
+    letter-spacing: 2px;
+}
+
+.list-item li .habit:hover{
+    cursor: pointer;
+}
+
+.list-item li .delete:hover{
+    cursor: pointer;
+}
+
+.delete a i{
+    color: red;
+}
+
+.list-item li hr {
+    width: 15vw;
+    margin-left: 0;
+}

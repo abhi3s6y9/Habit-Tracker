@@ -1,25 +1,27 @@
-<!-- Importing stylesheet -->
+<!-- Importing stylesheet from assets -->
 <link rel="stylesheet" href="./css/home.css">
 
-<!-- Form For Taking Habit List -->
-<div>
+<!-- Form for adding Habits -->
+<div id="input">
     <form class="habit-form" action="/add-habit" method="POST">
         <input type="text" name="habit_name" class="habit-details-input" placeholder="Enter Habit You Want To Create" required>
         <button class="button" type="submit"><i class="fas fa-plus"></i></button>
     </form>
 </div>
 
-<!-- Rendering habits -->
+<!-- Rendering habits from Database -->
 <div class="render-habits">
     <ul class="list-item">
         <% for (const it of habit_list){ %>
         <li onclick="location.href='/view-habit/?id=<%=it._id%>'" >
-            <div class="habit"> <i class="fas fa-smile-beam"></i> <%=it.habit_name%></div>
-            <div class="delete">
+            <span id="bullet-point"> <i class="fa-regular fa-hand-point-right"></i> </span>
+            <span class="habit"> <%=it.habit_name%> </span>
+            <span class="delete">
                 <a href="/delete-habit/?id=<%=it._id%>">
-                    <i class="fas fa-times"></i>
+                    <i class="fa-solid fa-trash-can"></i>
                 </a>
-            </div>
+            </span>
+            <hr>
         </li>
         <% } %> 
     </ul>
