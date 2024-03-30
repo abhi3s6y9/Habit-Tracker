@@ -46,6 +46,7 @@
             const date = moment(endDate).subtract(i, 'days').valueOf() + "";
             const listElement = document.createElement("li");
             listElement.setAttribute("class", "list-item");
+            listElement.setAttribute("class", "pointer");
             listElement.setAttribute("id", date);
 
             const dateDiv = document.createElement("div");
@@ -54,7 +55,7 @@
 
             // Mark the date as current date
             if (moment(endDate).subtract(i, 'days').valueOf() == moment(currentDate).valueOf()) {
-                dateDiv.innerHTML += " (TODAY)";
+                dateDiv.innerHTML += " (Today's Date)";
                 listElement.style.border = " 2px solid lightslategray";
             }
 

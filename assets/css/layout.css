@@ -3,14 +3,16 @@ nav{
     height: 7vh;
     margin-left: 0px;
     margin-top: 0px;
-    padding-top: 5px;
     background-color: lightgrey;
 }
 
 nav a {
+    display: inline-block;
     font-style: none;
     font-size: 2rem;
     margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .heading {
