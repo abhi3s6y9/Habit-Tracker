@@ -1,29 +1,31 @@
 const express = require('express');
 const app = express();
+const moment = require('moment');
 const db = require('./config/mongoose');
 const path = require('path');
 const expressLayout = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
 const port = 8000;
 
+moment().format();
 
-// ------Statics files (js, css, sass, etc) ------ //
+/* ------Statics files (js, css, sass, etc) ------ */
 app.use(express.static(path.join(__dirname,'./assets')));
 // app.use(express.urlencoded()); (Old method)
 app.use(bodyParser.urlencoded({extended: false}));
 
-// ----------EJS-----------//
+/* ----------EJS-----------*/
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname, 'views'));
 
-// ------ EJS layouts ------//
+/* ------ EJS layouts ------*/
 app.use(expressLayout);
 // extract style and scripts from sub pages into the layout
 app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);
 
 
-// ------Router------------//
+/* ------Router------------ */
 app.use('/',require('./routes'));
 
 
