@@ -1,0 +1,47 @@
+<!-- Stylesheets -->
+<!-- <link rel="stylesheet" href="/css/habit.css"> -->
+
+<!-- Habit Name -->
+<div>
+    <h1 class="heading-name"><%=locals.habit.habit_name%> </h1>
+</div>
+
+
+<!-- Date Filtering  -->
+<div class="date-container ">
+    <div>
+        From : 
+        <input type="date" name="start-date" id="start-date" class="date-picker" required>
+    </div>
+    <div>
+        To : 
+        <input type="date" name="end-date" id="end-date" class="date-picker" required> 
+    </div>
+    <button id="filter"><i class="fas fa-search"></i></button>
+</div>
+
+
+
+<!-- Indicators -->
+<div class="key">
+    <span>Key: &nbsp;</span>
+    <span style="color: green;">Done &nbsp;</span>
+    <span style="color: red;">Not Done &nbsp;</span>
+    <span style="color: gray;">Unmarked</span>
+</div>
+
+
+<!-- Making Habit Details... -->
+<div class="habit-container">
+    <ul id="item-list">
+        <!-- <li class="list-item">
+            <div class="date-div"></div>
+            <div class="status"></div>
+        </li> -->
+    </ul>
+</div>
+
+
+<!-- scripts -->
+<!-- <script src="/js/moment.js"></script> -->
+<script src="/js/habitDetails.js"></script>

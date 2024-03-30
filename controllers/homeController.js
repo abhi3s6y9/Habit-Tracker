@@ -62,7 +62,7 @@ module.exports.delete = async function (request, response) {
 }
 
 // Finds a habit by id given in query params and renders it
-module.exports.viewhabit = async function (request, response) {
+module.exports.viewHabit = async function (request, response) {
     let id = request.query.id;
 
     try {
@@ -70,24 +70,23 @@ module.exports.viewhabit = async function (request, response) {
         response.render("habit.ejs", { "habit": habit });
     } catch (error) {
         console.log('Error viewing habit from DB', error);
-        return res.redirect('back');
+        return response.redirect('back');
     }
 
 }
 
-// Finds a habit by id given in query params and returns it's json object
-module.exports.fetchhabit = function (request, response) {
+// Finds a habit by it's id given in query params and returns it's json
+module.exports.fetchHabit = async function (request, response) {
     let id = request.query.id;
-    Habit.findById(id, function (err, habit) {
-        if (err) {
-            console.log("error in finding habit");
-            return;
-        }
-        else {
-            response.setHeader('Content-Type', 'application/json');
-            response.end(JSON.stringify(habit));
-        }
-    })
+    try {
+        let habit = await Habit.findById(id);
+        response.setHeader('Content-Type', 'application/json');
+        response.end(JSON.stringify(habit));
+    } catch(error) {
+        console.log('Error in finding habit', error);
+        return response.redirect('back');
+    }
+
 }
 
 // first find an element in database using id
